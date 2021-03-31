@@ -3,6 +3,7 @@ import css from "styled-jsx/css";
 // import {GoMail, GoLink, GoOrganization, GoLocation} from "react-icons/go";
 import Profile from "../components/Profile";
 import formatDistance from "date-fns/formatDistance";
+import Repositories from "../components/Repositories";
 
 
 const style = css`
@@ -90,48 +91,59 @@ a {
 // };
 
 
+// const name = ({user, repos}) => {
+//   return (
+//     <div className="user-contents-wrapper">
+//       <Profile user={user}/>
+//       <div className="repos-wrapper">
+//         <div className="repos-header">
+//           Repositories
+//           <span className="repos-count">{user.public_repos}</span>
+//         </div>
+//         {user && repos && 
+//         repos.map((repo) => (
+//           <div key={repo.id} className="repository-wrapper">
+//             <a 
+//               href={`https://github.com/${user.login}/${repo.name}`} 
+//               target="_blank" 
+//               rel="noreferrer"
+//             >
+//               <h2 className="repository-name">{repo.name}</h2>
+//             </a>
+//             <p className="repository-description">{repo.description}</p>
+//             <p className="repository-language">
+//               {repo.language}
+//               <span className="repository-updated-at"></span>
+//             </p>
+//             <p className="repository-language">{repo.language}
+//             <span className="repository-updated-at">
+//               {formatDistance(new Date(repo.updated_at), new Date(), {
+//                 addSuffix: true,
+//               })}
+//             </span>
+//             </p>
+            
+//           </div>
+//         ))}
+//       </div>
+
+//       <style jsx>{style}</style>
+//     </div>
+//   )
+// }
+
 const name = ({user, repos}) => {
   return (
     <div className="user-contents-wrapper">
       <Profile user={user}/>
-      <div className="repos-wrapper">
-        <div className="repos-header">
-          Repositories
-          <span className="repos-count">{user.public_repos}</span>
-        </div>
-        {user && repos && 
-        repos.map((repo) => (
-          <div key={repo.id} className="repository-wrapper">
-            <a 
-              href={`https://github.com/${user.login}/${repo.name}`} 
-              target="_blank" 
-              rel="noreferrer"
-            >
-              <h2 className="repository-name">{repo.name}</h2>
-            </a>
-            <p className="repository-description">{repo.description}</p>
-            <p className="repository-language">
-              {repo.language}
-              <span className="repository-updated-at"></span>
-            </p>
-            <p className="repository-language">{repo.language}
-            <span className="repository-updated-at">
-              {formatDistance(new Date(repo.updated_at), new Date(), {
-                addSuffix: true,
-              })}
-            </span>
-            </p>
-            
-          </div>
-        ))}
-      </div>
+      <Repositories use={user} repos={repos} />
       <style jsx>{style}</style>
     </div>
-  )
-}
+  );
+};
 
 export const getServerSideProps = async({query}) => {
-  const {name} = query;
+  const {name, page} = query;
   try{
     let user;
     let repos;
@@ -142,7 +154,7 @@ export const getServerSideProps = async({query}) => {
     }
     console.log(user);
     const repoRes = await fetch(
-      `https://api.github.com/users/${name}/repos?sort=updated&page=1&per_page=10`
+      `https://api.github.com/users/${name}/repos?sort=updated&page=${page}&per_page=10`
     );
     if (repoRes.status === 200) {
       repos = await repoRes.json();
