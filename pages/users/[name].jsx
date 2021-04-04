@@ -136,7 +136,7 @@ const name = ({user, repos}) => {
   return (
     <div className="user-contents-wrapper">
       <Profile user={user}/>
-      <Repositories use={user} repos={repos} />
+      <Repositories user={user} repos={repos} />
       <style jsx>{style}</style>
     </div>
   );

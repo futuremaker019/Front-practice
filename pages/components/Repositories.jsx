@@ -115,24 +115,23 @@ const Repositories = ({user, repos}) => {
           Repositories
           <span className="repos-count">{user.public_repos}</span>
         </div>
-      {repos.map((repo) => (
-        <div key={repo.id} className="repository-wrapper">
-          <a 
-            href={`https://github.com/${user.login}/${repo.name}`}
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            <h2 className="repository-name">{repo.name}</h2>
-          </a>
-          <p className="repository-description">{repo.description}</p>
-          <p className="repository-language">
-            <span className="repository-updated-at">
-              {formatDistance(new Date(repo.updated_at), new Date(), {addSuffix: true})}
-            </span>
-          </p>
-        </div>
-      ))}
-
+        {repos.map((repo) => (
+          <div key={repo.id} className="repository-wrapper">
+            <a 
+              href={`https://github.com/${user.login}/${repo.name}`}
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <h2 className="repository-name">{repo.name}</h2>
+            </a>
+            <p className="repository-description">{repo.description}</p>
+            <p className="repository-language">
+              <span className="repository-updated-at">
+                {formatDistance(new Date(repo.updated_at), new Date(), {addSuffix: true})}
+              </span>
+            </p>
+          </div>
+        ))}
         <div className="repository-pagination">
           <Link 
             href={`/users/${user.login}?page=${Number(page)-1}`}
