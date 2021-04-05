@@ -1,9 +1,8 @@
 import fetch from "isomorphic-unfetch";
 import css from "styled-jsx/css";
-// import {GoMail, GoLink, GoOrganization, GoLocation} from "react-icons/go";
-import Profile from "../components/Profile";
+import Profile from "../../components/Profile";
 import formatDistance from "date-fns/formatDistance";
-import Repositories from "../components/Repositories";
+import Repositories from "../../components/Repositories";
 
 
 const style = css`
@@ -152,13 +151,11 @@ export const getServerSideProps = async({query}) => {
     if(userRes.status === 200) {
       user = await userRes.json();
     }
-    console.log(user);
     const repoRes = await fetch(
       `https://api.github.com/users/${name}/repos?sort=updated&page=${page}&per_page=10`
     );
     if (repoRes.status === 200) {
       repos = await repoRes.json();
-      console.log(repos);
     }
     return {props : {user, repos}};
   } catch (e) {
