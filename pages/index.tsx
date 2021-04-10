@@ -5,6 +5,10 @@ import {TodoType} from "../types/todo";
 import {getTodosAPI} from "../lib/api/todo";
 import styled from "styled-components";
 
+interface IProps {
+  todos: TodoType[];
+}
+
 const todos : TodoType[] = [
   {id:1, text:"마트 가서 장보기", color:"red", checked:false},
   {id:2, text:"수학 숙제하기", color:"orange", checked:false},
@@ -15,18 +19,19 @@ const todos : TodoType[] = [
 ];
 
 
-const app: NextPage = () => {
+const app: NextPage<IProps> = ({todos}) => {
   return <TodoList todos={todos}/>;
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const {data} = await getTodosAPI();
-    console.log(data);
-    return {props: {}};
+    return {props: {todos:data}};
   } catch (e) {
     console.log(e);
-    return {props: {}};
+    return {props: {todos:[]}};
   }
 };
+
+export default app;
 
