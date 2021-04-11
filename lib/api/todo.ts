@@ -3,3 +3,5 @@ import {TodoType} from "../../types/todo";
 
 // 투두리스트 불러오기 API
 export const getTodosAPI = () => axios.get<TodoType[]>("api/todos");
+
+export const checkTodoAPI = (id:number)=>axios.patch(`api/todos/${id}`);
