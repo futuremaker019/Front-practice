@@ -6,6 +6,8 @@ import TrashCanIcon from "../public/static/svg/trash-can.svg";
 import CheckMarkIcon from "../public/static/svg/check-mark.svg";
 import {checkTodoAPI, deleteTodoAPI} from "../lib/api/todo";
 import {useRouter} from "next/dist/client/router"
+import {useSelector} from "react-redux";
+import {RootState} from "../store";
 
 const Container = styled.div`
   width: 100%;
@@ -123,7 +125,9 @@ interface IProps {
   todos: TodoType[];
 }
 
-const TodoList: React.FC<IProps> = ({todos}) => {
+const TodoList: React.FC = () => {
+  const todos = useSelector((state:RootState) => state.todo.todos);
+
   // 색깔 객체 구하기 1
   const getTodoColorNums = useCallback(() => {
     let red = 0;
