@@ -22,7 +22,7 @@ interface IProps {
 
 
 const app: NextPage = () => {
-  return <TodoList todos={[]}/>;
+  return <TodoList />;
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(

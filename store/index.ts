@@ -5,6 +5,7 @@ import {
   TypedUseSelectorHook,
   useSelector as useReduxSelector
 } from "react-redux";
+import { configureStore } from '@reduxjs/toolkit';
 
 export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 
@@ -37,7 +38,7 @@ export type RootState = ReturnType<typeof rootReducer>;
 // };
 
 const initStore = () => {
-  return createStore({
+  return configureStore({
     reducer,
     devTools: true,
   });

@@ -8,6 +8,8 @@ import {checkTodoAPI, deleteTodoAPI} from "../lib/api/todo";
 import {useRouter} from "next/dist/client/router"
 import {RootState} from "../store";
 import {useSelector} from "../store";
+import {todoActions} from "../store/todo"
+import {useDispatch} from "react-redux";
 
 const Container = styled.div`
   width: 100%;
@@ -204,13 +206,14 @@ const TodoList: React.FC = () => {
       // router.push("/");
 
       // 체크를 적용하는 방법 3 (data를 local로 저장하여 사용하기)
-      const newTodos = localTodos.map((todo) => {
+      const newTodos = todos.map((todo) => {
         if (todo.id === id) {
           return {...todo, checked:!todo.checked};
         }
         return todo;
       })
-      setLocalTodos(newTodos);
+      dispatch(todoActions.setTodo(newTodos));
+      console.log("체크하였습니다.");
     } catch (e) {
       console.log(e);
     }
@@ -220,7 +223,7 @@ const TodoList: React.FC = () => {
     try {
       await deleteTodoAPI(id);
       const newTodos = localTodos.filter((todo) => todo.id !== id);
-      setLocalTodos(newTodos);
+      dispatch(todoActions.setTodo(newTodos));
       console.log("삭제했습니다.");
     } catch (error) {
       console.log(error);
