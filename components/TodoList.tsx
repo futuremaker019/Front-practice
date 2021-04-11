@@ -92,7 +92,7 @@ const Container = styled.div`
         display: flex;
         margin-right: 12px;
         svg {
-          &: first-child {
+          &:first-child {
             margin-right: 16px;
           }
         }

@@ -17,6 +17,15 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     }
   }
 
+  if (req.method === "POST") {
+    // 값을 받았는지 확인
+    const { text, color } = req.body;
+    if (!text || !color) {
+      res.statusCode = 400;
+      return res.send("text 혹은 color 가 없습니다.");
+    }
+  }
+
   // res.statusCode = 405;
   // console.log(res.statusCode);
   // return res.end();
