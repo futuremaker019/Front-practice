@@ -1,11 +1,10 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import BrushIcon from "../public/statics/svg/brush.svg";
+import BrushIcon from "../public/static/svg/brush.svg";
 import palette from "../styles/palette";
 import {TodoType} from "../types/todo";
 import {addTodoAPI} from "../lib/api/todo";
 import {useRouter} from "next/router";
-import { route } from 'next/dist/next-server/server/router';
 
 const Container = styled.div`
   padding: 16px;
