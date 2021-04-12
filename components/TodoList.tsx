@@ -192,6 +192,7 @@ const TodoList: React.FC = () => {
 
   const router = useRouter();
   const [localTodos, setLocalTodos] = useState(todos);
+  const dispatch = useDispatch();
 
   // 투두 체크하기
   const checkTodo = async (id:number) => {

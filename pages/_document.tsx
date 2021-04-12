@@ -38,8 +38,8 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="stylesheet" href="https://fonts,goolgeapis.com/css?family=Noto+Sans+KR:400,700&display=swap"/>
-          <link rel="stylesheet" href="https://fonts,goolgeapis.com/css?family=Noto+Sans+KR:400,700&display=swap&subset=korean"/>
+          <link rel="stylesheet" href="https://fonts.goolgeapis.com/css?family=Noto+Sans+KR:400,700&display=swap"/>
+          <link rel="stylesheet" href="https://fonts.goolgeapis.com/css?family=Noto+Sans+KR:400,700&display=swap&subset=korean"/>
         </Head>
         <body>
           <Main />
