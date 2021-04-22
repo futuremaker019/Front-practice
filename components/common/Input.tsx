@@ -25,7 +25,7 @@ const Container = styled.div<{ iconExist: boolean}>`
     top: 0;
     right: 11px;
     height: 46px;
-    display: flex:
+    display: flex;
     align-items: center;
   }
 `;
