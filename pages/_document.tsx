@@ -1,4 +1,9 @@
-import Document, {DocumentContext} from "next/document";
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext} from "next/document";
 import { ServerStyleSheet } from 'styled-components';
 
 
@@ -10,11 +15,13 @@ export default class MyDocument extends Document {
     try {
       ctx.renderPage = () => 
         originalRenderpage({
-          enhanceApp: (App) => {props} =>
+          enhanceApp: (App) => (props) =>
             sheet.collectStyles(<App {...props}/>)
         });
-        
+
       const initialProps = await Document.getInitialProps(ctx);
+
+      
       return {
         ...initialProps,
         styles: (
@@ -27,5 +34,19 @@ export default class MyDocument extends Document {
     } finally {
       sheet.seal();
     }
+  }
+  render() {
+    return (
+    <Html>
+      <Head>
+        <link rel="stylesheet" href="https://fonts.goolgeapis.com/css?family=Noto+Sans+KR:400,700&display=swap"/>
+        <link rel="stylesheet" href="https://fonts.goolgeapis.com/css?family=Noto+Sans+KR:400,700&display=swap&subset=korean"/>
+      </Head>
+      <body>
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+    )
   }
 }
