@@ -11,6 +11,8 @@ import Selector from "../common/Selector"
 import Input from "../common/Input";
 import Button from "../common/Button"
 import { signupAPI } from '../../lib/api/auth'
+import {useDispatch} from "react-redux";
+import {userActions} from "../../store/user"
 
 const Container = styled.div`
   width: 568px;
@@ -96,6 +98,8 @@ const SignUpModal: React.FC = () => {
   const [birthDay, setBirthDay] = useState<string | undefined>();
   const [birthMonth, setBirthMonth] = useState<string | undefined>();
 
+  const dispatch = useDispatch();
+
   // 이메일 주소 변경 시
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -136,8 +140,9 @@ const SignUpModal: React.FC = () => {
     setBirthYear(event.target.value);
   };
 
-  const onSubmitSignUp = async (evnet: React.FormEvent<HTMLFormElement>) => {
-    event?.preventDefault();
+  // 회원가입 폼 제출하기
+  const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     try {
       const signUpBody = {
@@ -149,10 +154,10 @@ const SignUpModal: React.FC = () => {
           `${birthYear}-${birthMonth!.replace("월","")}-${birthDay}`
         ).toISOString(),
       }
-      await signupAPI(signUpBody);
+      const { data } = await signupAPI(signUpBody);
+      dispatch(userActions.setLoggedUser(data));
     } catch (error) {
       console.log(error);
-      
     }
   }
 
