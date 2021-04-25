@@ -10,6 +10,7 @@ import {dayList, monthList, yearList} from "../../lib/staticData"
 import Selector from "../common/Selector"
 import Input from "../common/Input";
 import Button from "../common/Button"
+import { signupAPI } from '../../lib/api/auth'
 
 const Container = styled.div`
   width: 568px;
@@ -122,21 +123,41 @@ const SignUpModal: React.FC = () => {
 
   // 생년월일 월 변경 시
   const onChangeBirthMonth = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFirstname(event.target.value);
+    setBirthMonth(event.target.value);
   };
 
   // 생년월일 일 변경 시
   const onChangeBirthDay = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
+    setBirthDay(event.target.value);
   };
 
   // 생년월일 년 변경 시
   const onChangeBirthYear = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLastname(event.target.value);
+    setBirthYear(event.target.value);
   };
 
+  const onSubmitSignUp = async (evnet: React.FormEvent<HTMLFormElement>) => {
+    event?.preventDefault();
+
+    try {
+      const signUpBody = {
+        email,
+        lastname,
+        firstname,
+        password,
+        birthday: new Date (
+          `${birthYear}-${birthMonth!.replace("월","")}-${birthDay}`
+        ).toISOString(),
+      }
+      await signupAPI(signUpBody);
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+
   return (
-    <Container>
+    <Container onSubmit={onSubmitSignUp}>
       <CloseXIcon className="modal-close-x-icon" />
       <div className="input-wrapper">
         <Input 
