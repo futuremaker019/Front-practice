@@ -1,4 +1,3 @@
-import { type } from 'node:os';
 import {UserType} from "./user";
 
 // 유저 redux state

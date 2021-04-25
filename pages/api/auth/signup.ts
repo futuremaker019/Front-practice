@@ -54,6 +54,7 @@ export default async (req: NextApiRequest, res:NextApiResponse) => {
     const newUserWithoutPassword: Partial<Pick<StoredUserType,"password">>
     = newUser;
 
+    // delete을 사용하여 객체의 속성을 제거할 수 있다.
     delete newUserWithoutPassword.password;
     res.statusCode = 200;
     return res.send(newUser);
