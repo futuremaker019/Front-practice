@@ -6,7 +6,7 @@ import palette from "../../styles/palette";
 
 const Container = styled.p<{isValid: boolean}>`
   color: ${({ isValid }) =>
-    isValid ? palette.green : palette.davidson_orange};
+    isValid ? palette.davidson_orange : palette.green};
   display: flex;
   align-items: center;
   line-height: 1.5;

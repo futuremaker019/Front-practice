@@ -118,7 +118,7 @@ const Header: React.FC = () => {
       )} */}
       
       <ModalPortal>
-        <SignUpModal />
+        <SignUpModal closeModal={closeModal} />
       </ModalPortal>
     </Container>
   );
