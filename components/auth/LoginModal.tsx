@@ -99,7 +99,6 @@ const LoginModal: React.FC<IProps> = ({closeModal}) => {
         console.log(data);
       } catch (error) {
         console.log(error);
-        
       }
     }
   }

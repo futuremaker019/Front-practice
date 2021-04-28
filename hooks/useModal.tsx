@@ -13,6 +13,7 @@ const Container = styled.div`
   top: 0;
   left: 0;
   z-index: 11;
+
   .modal-background {
     position: absolute;
     width: 100%;
@@ -20,15 +21,15 @@ const Container = styled.div`
     background-color: rgba(0,0,0,0.75);
   }
   .modal-contents {
-      width: 400px;
-      height: 400px;
-      background-color: white;
-      z-index:11;
-    }
-    .modal-close-x-icon {
+    width: 568px;
+    /* height: 400px; */
+    background-color: white;
+    z-index:11;
+  }
+  .modal-close-x-icon {
     cursor:pointer;
     display:block;
-    margin:0 0 40px auto;
+    margin:20px 20px 20px auto;
   }
 `;
 

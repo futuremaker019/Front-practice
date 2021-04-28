@@ -19,13 +19,11 @@ import PasswordWarning from './PasswordWarning'
 
 const Container = styled.form`
   width: 568px;
-  height: 614px;
+  height: 500px;
   padding:32px;
   background-color: white;
   z-index: 11;
   
- 
-
   .input-wrapper {
     position: relative;
     margin-bottom: 16px;
@@ -209,17 +207,9 @@ const SignUpModal: React.FC<IProps> = ({closeModal}) => {
   // 회원가입 폼 제출하기
   const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     setValidateMode(true);
-    console.log(validateSignUpForm());
 
-    dispatch(commonActions.setValidateMode(true));
-
-    closeModal();
-
-    // if (!email || !lastname || !!firstname || !password) {
-    //   return undefined;
-    // }
+    // dispatch(commonActions.setValidateMode(true));
 
     if (validateSignUpForm()) {
       try {
@@ -233,8 +223,8 @@ const SignUpModal: React.FC<IProps> = ({closeModal}) => {
           ).toISOString(),
         }
         const { data } = await signupAPI(signUpBody);
-
         dispatch(userActions.setLoggedUser(data));
+        closeModal();
 
         console.log(data);
       } catch (error) {
@@ -253,34 +243,39 @@ const SignUpModal: React.FC<IProps> = ({closeModal}) => {
     <Container onSubmit={onSubmitSignUp}>
       <div className="input-wrapper">
         <Input 
-          placeholder="이메일 주소" 
           type="email" 
-          icon={<Mailcon />} 
           name="email"
+          placeholder="이메일 주소" 
+          icon={<Mailcon />} 
           value={email}
-          onChange={onChangeEmail}
           useValidation
           isValid={!!email}
+          onChange={onChangeEmail}
           errorMessage="이메일이 필요합니다."
         />
       </div>
       <div className="input-wrapper">
         <Input 
+          name="lastname"
           placeholder="이름(예: 길동)" 
           icon={<PersonIcon />} 
           value={lastname}
-          onChange={onChangeLastname}
           useValidation
-          isValid={!!firstname}
-          errorMessage="성을 입력하세요."
+          isValid={!!lastname}
+          onChange={onChangeLastname}
+          errorMessage="이름을 입력하세요."
         />
       </div>
       <div className="input-wrapper">
         <Input 
+          name="firstname"
           placeholder="성(예: 홍)" 
           icon={<PersonIcon />} 
+          useValidation
           value={firstname}
+          isValid={!!firstname}
           onChange={onChangeFirstname}
+          errorMessage="성을 입력하세요."
         />
       </div>
       <div className="input-wrapper sign-up-password-input-wrapper">
