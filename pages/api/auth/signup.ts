@@ -25,7 +25,6 @@ export default async (req: NextApiRequest, res:NextApiResponse) => {
     }
 
     if (!email || !firstname || !lastname || !password || !birthday) {
-
       res.statusCode = 400;
       return res.send("필수 데이터가 없습니다.")
     }
@@ -34,6 +33,18 @@ export default async (req: NextApiRequest, res:NextApiResponse) => {
     console.log("hashedPassword : " + hashedPassword);
 
     const users = Data.user.getList();
+    const user = Data.user.find({email});
+
+    if (!user) {
+      res.statusCode = 404;
+      return res.send("해당 이메일의 유자가 없습니다.");
+    }
+    
+    const isPasswordMatched = bcrypt.compareSync(password, user.password);
+    if (!isPasswordMatched) {
+      res.statusCode = 403;
+      return res.send("비밀번호가 일치하지 않습니다.");
+    }
 
     let userId;
     if (users.length === 0) {
@@ -66,6 +77,7 @@ export default async (req: NextApiRequest, res:NextApiResponse) => {
     const newUserWithoutPassword: Partial<Pick<StoredUserType,"password">> = newUser;
 
     // delete을 사용하여 객체의 속성을 제거할 수 있다.
+    // 비밀번호가 일치한다면, 유저 정보에서 password를 제거하여 보내고, 회원가입 떄와 동일하게 token을 전달하도록 한다.
     delete newUserWithoutPassword.password;
     res.statusCode = 200;
     return res.send(newUser);

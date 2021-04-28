@@ -1,6 +1,7 @@
 import React, {useRef, useEffect, useState} from "react"
 import {createPortal} from "react-dom";
 import styled from "styled-components"
+import CloseXIcon from "../public/static/svg/modal/modal_colose_x_icon.svg"
 
 const Container = styled.div`
   width:100%;
@@ -17,6 +18,17 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.75);
+  }
+  .modal-contents {
+      width: 400px;
+      height: 400px;
+      background-color: white;
+      z-index:11;
+    }
+    .modal-close-x-icon {
+    cursor:pointer;
+    display:block;
+    margin:0 0 40px auto;
   }
 `;
 
@@ -55,7 +67,13 @@ const useModal = () => {
             role="presentation"
             onClick={closeModal}
           />
-          {children}
+          <div className="modal-contents">
+            <CloseXIcon
+              className="modal-close-x-icon"
+              onClick={closeModal}
+            />
+            {children}
+          </div>
         </Container>,
         ref.current
       );

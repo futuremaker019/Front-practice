@@ -9,7 +9,6 @@ const Container = styled.p<{isValid: boolean}>`
     isValid ? palette.davidson_orange : palette.green};
   display: flex;
   align-items: center;
-  line-height: 1.5;
   svg {
     margin-right: 8px;
   }

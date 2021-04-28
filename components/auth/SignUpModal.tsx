@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useEffect } from "react"
 import styled from "styled-components"
 import palette from "../../styles/palette"
-import CloseXIcon from "../../public/static/svg/modal/modal_colose_x_icon.svg"
+
 import Mailcon from "../../public/static/svg/auth/mail.svg"
 import PersonIcon from "../../public/static/svg/auth/person.svg"
 import OpenedEyeIcon from "../../public/static/svg/auth/opened-eye.svg"
@@ -10,7 +10,7 @@ import {dayList, monthList, yearList} from "../../lib/staticData"
 import Selector from "../common/Selector"
 import Input from "../common/Input";
 import Button from "../common/Button"
-import { signupAPI } from '../../lib/api/auth'
+import { loginAPI, signupAPI } from '../../lib/api/auth'
 import {useDispatch} from "react-redux";
 import {userActions} from "../../store/user"
 import useValidateMode from "../../hooks/useValidateMode"
@@ -18,17 +18,13 @@ import { commonActions } from '../../store/common'
 import PasswordWarning from './PasswordWarning'
 
 const Container = styled.form`
-  /* width: 568px;
-  height: 614px; */
+  width: 568px;
+  height: 614px;
   padding:32px;
   background-color: white;
   z-index: 11;
   
-  .modal-close-x-icon {
-    cursor:pointer;
-    display:block;
-    margin:0 0 40px auto;
-  }
+ 
 
   .input-wrapper {
     position: relative;
@@ -255,7 +251,6 @@ const SignUpModal: React.FC<IProps> = ({closeModal}) => {
 
   return (
     <Container onSubmit={onSubmitSignUp}>
-      <CloseXIcon className="modal-close-x-icon" onClick={closeModal} />
       <div className="input-wrapper">
         <Input 
           placeholder="이메일 주소" 

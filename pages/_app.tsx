@@ -6,8 +6,8 @@ import {wrapper} from "../store";
 const app = ({Component, pageProps} : AppProps) => {
   return (
     <>
-      <GlobalStyle />
       <Header />
+      <GlobalStyle />
       <Component {...pageProps} />
       <div id="root-modal" />
     </>
