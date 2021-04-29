@@ -13,6 +13,8 @@ import { useDispatch } from "react-redux";
 import { authActions } from "../store/auth"
 import AuthModal from "./auth/AuthModal";
 import OutsideClickHandler from 'react-outside-click-handler';
+import { logoutAPI } from '../lib/api/auth';
+import { userActions } from '../store/user';
 
 const Container = styled.div`
   position: sticky;
@@ -151,6 +153,16 @@ const Header: React.FC = () => {
 
   const [isUsermenuOpened, setIsUsermenuOpened] = useState(false);
 
+  const logout = async () => {
+    try {
+      await logoutAPI();
+      dispatch(userActions.initUser());
+      console.log("clicked");
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   return (
     <Container>
       <Link href="/">
@@ -217,7 +229,7 @@ const Header: React.FC = () => {
                 </a>
               </Link>
               <div className="header-username-divider"/>
-              <li role="presentation" onClick={() => { }}>
+              <li role="presentation" onClick={logout}>
                   로그아웃
               </li>
             </ul>
