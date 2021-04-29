@@ -10,8 +10,8 @@ import { userActions } from '../store/user';
 const app = ({Component, pageProps} : AppProps) => {
   return (
     <>
-      <Header />
       <GlobalStyle />
+      <Header />
       <Component {...pageProps} />
       <div id="root-modal" />
     </>

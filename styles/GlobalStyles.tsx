@@ -6,11 +6,17 @@ const globalStyle = css `
   ${reset};
   *{
     box-sizing: border-box;
+    color: ${palette.black}
   }
 
   body {
     font-family: Noto Sans, Noto Sans KR;
-    color : ${palette.black}
+    line-height: 1.2;
+  }
+
+  a {
+    text-decoration: none;
+    color: ${palette.black}
   }
 `;
 

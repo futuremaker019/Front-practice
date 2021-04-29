@@ -19,7 +19,7 @@ const Container = styled.div<InputContainerProps>`
     border-radius: 4px;
     font-size: 16px;
     outline: none;
-    ::placeholder {
+    &::placeholder {
       color: ${palette.gray_76};
     }
     &:focus {
@@ -27,7 +27,7 @@ const Container = styled.div<InputContainerProps>`
     }
   }
 
-  svg {
+  .svg {
     position: absolute;
     right: 11px;
     height: 46px;
@@ -38,6 +38,16 @@ const Container = styled.div<InputContainerProps>`
     font-size:14px;
     color: ${palette.tawny}
   }
+
+  .input-icon-wrapper {
+    position: absolute;
+    top: 0;
+    right: 11px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+  }
+
   ${({useValidation, isValid}) =>
     useValidation && 
     !isValid &&
@@ -59,14 +69,7 @@ const Container = styled.div<InputContainerProps>`
       }
     `}
 
-  .input-icon-wrapper {
-    position: absolute;
-    top: 0;
-    right: 11px;
-    height: 46px;
-    display: flex;
-    align-items: center;
-  }
+  
 `;
 
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -91,10 +94,10 @@ const Input: React.FC<IProps> = ({
       useValidation={validateMode && useValidation}
     >
       <input {...props} />
-      {icon}
       {useValidation && validateMode && !isValid && errorMessage && (
         <p className="input-error-message">{errorMessage}</p>
       )}
+      <div className="input-icon-wrapper">{icon}</div>
     </Container>
   )
 }

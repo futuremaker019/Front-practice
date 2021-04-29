@@ -14,7 +14,7 @@ import useValidateMode from '../../hooks/useValidateMode'
 import { userActions } from '../../store/user'
 
 const Container = styled.form`
-  width:568px;
+  /* width:568px; */
   padding: 32px;
   background-color: white;
   z-index: 11;
@@ -73,11 +73,6 @@ const LoginModal: React.FC<IProps> = ({closeModal}) => {
     dispatch(authActions.setAuthMode("signup"));
   }
 
-  // 로그인 모달로 변경하기
-  const changeToLoginModal = () => {
-    dispatch(authActions.setAuthMode("login"));
-  }
-
   //*비밀번호 숨김 토글하기
   const togglePasswordHiding = () => {
     setIsPasswordHided(!isPasswordHided);
@@ -111,7 +106,6 @@ const LoginModal: React.FC<IProps> = ({closeModal}) => {
 
   return (
     <Container onSubmit={onSubmitLogin}>
-      <CloseXIcon className="modal-close-x-icon" onClick={closeModal} />
       <div className="login-input-wrapper">
         <Input 
           placeholder="이메일 주소"
@@ -145,20 +139,13 @@ const LoginModal: React.FC<IProps> = ({closeModal}) => {
         <Button type="submit">로그인</Button>
       </div>
       <p>
-        이메 에어비엔비 계정이 있나요?
+        아직 에어비엔비 회원이 아니신가요?
         <span 
           className="login-modal-set-signup"
           role="presentation"
           onClick={changeToSignUpModal}
         >
           회원가입
-        </span>
-        <span 
-          className="login-modal-set-login"
-          role="presentation"
-          onClick={changeToLoginModal}
-        >
-          로그인
         </span>
       </p>
     </Container>

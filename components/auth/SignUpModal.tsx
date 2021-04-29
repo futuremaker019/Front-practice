@@ -1,7 +1,6 @@
 import React, { useMemo, useState, useEffect } from "react"
 import styled from "styled-components"
 import palette from "../../styles/palette"
-
 import Mailcon from "../../public/static/svg/auth/mail.svg"
 import PersonIcon from "../../public/static/svg/auth/person.svg"
 import OpenedEyeIcon from "../../public/static/svg/auth/opened-eye.svg"
@@ -16,35 +15,18 @@ import {userActions} from "../../store/user"
 import useValidateMode from "../../hooks/useValidateMode"
 import { commonActions } from '../../store/common'
 import PasswordWarning from './PasswordWarning'
+import { authActions } from '../../store/auth'
 
 const Container = styled.form`
-  width: 568px;
-  height: 500px;
-  padding:32px;
-  background-color: white;
-  z-index: 11;
-  
+  .modal-close-x-icon {
+    cursor: pointer;
+    display: block;
+    margin: 0 0 40px auto;    
+  }
+
   .input-wrapper {
     position: relative;
     margin-bottom: 16px;
-    input {
-      position: relative;
-      width: 100%;
-      height: 46px;
-      padding: 0 44px 0 11px;
-      border: 1px solid ${palette.gray_eb};
-      border-radius: 4px;
-      font-size: 16px;
-      outline: none;
-      ::placeholder {
-        color: ${palette.gray_76};
-      }
-    }
-    svg {
-      position: absolute;
-      right: 11px;
-      top: 16px;
-    }
   }
   .sign-up-password-input-wrapper {
     svg {
@@ -110,6 +92,11 @@ const SignUpModal: React.FC<IProps> = ({closeModal}) => {
 
   const { setValidateMode } = useValidateMode();
   const dispatch = useDispatch();
+
+  // 로그인 모달로 변경하기
+  const changeToLoginModal = () => {
+    dispatch(authActions.setAuthMode("login"));
+  }
 
   // 이메일 주소 변경 시
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -360,7 +347,7 @@ const SignUpModal: React.FC<IProps> = ({closeModal}) => {
         <span
           className="sign-up-modal-set-login"
           role="presentation"
-          onClick={() => {}}
+          onClick={changeToLoginModal}
         >
           로그인
         </span>

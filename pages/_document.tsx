@@ -37,38 +37,38 @@ export default class MyDocument extends Document {
   }
   render() {
     return (
-    <Html>
-      <Head>
-        <link 
-          rel="preconnect" 
-          href="https://fonts.gstatic.com" 
-        />
-        <link 
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" 
-          rel="stylesheet"
-        />
-        <link 
-          rel="preconnect" 
-          href="https://fonts.gstatic.com" 
-        />
-        <link 
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@1,400;1,700&display=swap" 
-          rel="stylesheet" 
-        />
-        {/* <link 
-          href="https://fonts.goolgeapis.com/css?family=Noto+Sans:400,700&display=swap"
-          rel="stylesheet" 
-        /> */}
-        {/* <link 
-          rel="stylesheet" 
-          href="https://fonts.goolgeapis.com/css?family=Noto+Sans+KR:400,700&display=swap&subset=korean"
-        /> */}
-      </Head>
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
+      <Html>
+        <Head>
+          <link 
+            rel="preconnect" 
+            href="https://fonts.gstatic.com" 
+          />
+          <link 
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" 
+            rel="stylesheet"
+          />
+          <link 
+            rel="preconnect" 
+            href="https://fonts.gstatic.com" 
+          />
+          <link 
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@1,400;1,700&display=swap" 
+            rel="stylesheet" 
+          />
+          {/* <link 
+            href="https://fonts.goolgeapis.com/css?family=Noto+Sans:400,700&display=swap"
+            rel="stylesheet" 
+          /> */}
+          {/* <link 
+            rel="stylesheet" 
+            href="https://fonts.goolgeapis.com/css?family=Noto+Sans+KR:400,700&display=swap&subset=korean"
+          /> */}
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
     )
   }
 }

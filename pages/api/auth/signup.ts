@@ -12,46 +12,34 @@ export default async (req: NextApiRequest, res:NextApiResponse) => {
   
 
   if(req.method === "POST") {
-    const { body }  = req;
-    const { email, firstname, lastname, password, birthday } = body;
-    console.log(body);
-
-    const userExist = Data.user.exist({email});
-    console.log("userExist : " + userExist);
-
-    if (userExist) {
-      res.statusCode = 409;
-      res.send("이미 가입된 이메일입니다.");
-    }
+    const { email, firstname, lastname, password, birthday } = req.body;
 
     if (!email || !firstname || !lastname || !password || !birthday) {
       res.statusCode = 400;
       return res.send("필수 데이터가 없습니다.")
     }
 
-    const hashedPassword = bcrypt.hashSync(password, 8);
-    console.log("hashedPassword : " + hashedPassword);
+    const userExist = Data.user.exist({email});
+    console.log("userExist : " + userExist);
+
+    if (userExist) {
+      res.statusCode = 405;
+      res.send("이미 가입된 이메일입니다.");
+    }
 
     const users = Data.user.getList();
-    const user = Data.user.find({email});
-
-    if (!user) {
-      res.statusCode = 404;
-      return res.send("해당 이메일의 유자가 없습니다.");
-    }
-    
-    const isPasswordMatched = bcrypt.compareSync(password, user.password);
-    if (!isPasswordMatched) {
-      res.statusCode = 403;
-      return res.send("비밀번호가 일치하지 않습니다.");
-    }
-
     let userId;
     if (users.length === 0) {
       userId = 1;
     } else {
       userId = users[users.length - 1].id + 1;
     }
+
+    const hashedPassword = bcrypt.hashSync(password, 8);
+    
+    const user = Data.user.find({email});
+    console.log("hashedPassword : " + hashedPassword);
+
     const newUser: StoredUserType = {
       id: userId,
       email,
@@ -69,9 +57,7 @@ export default async (req: NextApiRequest, res:NextApiResponse) => {
 
     res.setHeader(
       "Set-Cookie",
-      `access_token=${token}; path=/; expires=${new Date(
-        Date.now() + 60 * 60 * 24 * 1000 * 3
-      ).toISOString()}; httponly`
+      `access_token=${token}; path=/; expires=${new Date(Date.now() + 60 * 60 * 24 * 1000 * 3).toISOString()}; httponly`
     );
 
     const newUserWithoutPassword: Partial<Pick<StoredUserType,"password">> = newUser;
