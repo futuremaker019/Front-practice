@@ -225,11 +225,11 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         console.log(data);
       } catch (error) {
         console.log(error);
-      }  
+      }
     }
   };
 
-  useEffect(() => {
+  useEffect(() => {    // useEffect Hook -> componentDidMount, componentDidUpdate, componentWillUnmount
     return () => {
       setValidateMode(false);
     };

@@ -16,7 +16,7 @@ const globalStyle = css `
 
   a {
     text-decoration: none;
-    color: ${palette.black}
+    color: ${palette.black};
   }
 `;
 

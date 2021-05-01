@@ -8,6 +8,9 @@ interface IProps {
 }
 
 const AuthModal: React.FC<IProps> = ({closeModal}) => {
+  console.log("AuthModal active??? >>>>>>>>>>>>> ");
+  
+
   const authMode = useSelector((state:RootState) => state.auth.authMode);
 
   return(

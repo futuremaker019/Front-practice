@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react"
 import styled from "styled-components"
-import CloseXIcon from "../../public/static/svg/modal/modal_colose_x_icon.svg"
 import MailIcon from "../../public/static/svg/auth/mail.svg"
 import OpenedEyeIcon from "../../public/static/svg/auth/opened-eye.svg"
 import ClosedEyeIcon from "../../public/static/svg/auth/closed_eye.svg"
@@ -83,7 +82,7 @@ const LoginModal: React.FC<IProps> = ({closeModal}) => {
     setValidateMode(true);
 
     if (!email || !password) {
-      alert("이메일과 비밀버호를 입력해주세요.");
+      alert("이메일과 비밀번호를 입력해주세요.");
     } else {
       const loginBody = {email, password};
 
@@ -93,6 +92,7 @@ const LoginModal: React.FC<IProps> = ({closeModal}) => {
         closeModal();
         console.log(data);
       } catch (error) {
+
         console.log(error);
       }
     }

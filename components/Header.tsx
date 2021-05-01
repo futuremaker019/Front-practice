@@ -178,9 +178,9 @@ const Header: React.FC = () => {
       {!isLogged && <HeaderAuths />}
       {isLogged && <HeaderUserProfile />}
       
-      <ModalPortal>
+      {/* <ModalPortal>
         <AuthModal closeModal={closeModal} />
-      </ModalPortal>
+      </ModalPortal> */}
     </Container>
   );
 };

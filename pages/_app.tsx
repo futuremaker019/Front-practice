@@ -6,6 +6,7 @@ import { cookieStringToObject } from "../lib/utils"
 import axios from '../lib/api';
 import { meAPI } from '../lib/api/auth';
 import { userActions } from '../store/user';
+import { UserType } from '../types/user';
 
 const app = ({Component, pageProps} : AppProps) => {
   return (
@@ -24,13 +25,23 @@ app.getInitialProps = async (context: AppContext) => {
   const {store} = context.ctx;
   const {isLogged} = store.getState().user;
 
+  console.log("===========_app arrived to go to me.ts==========");
+  
+
   try {
     if (!isLogged && cookieObject.access_token) {
       axios.defaults.headers.cookie = cookieObject.access_token;
-      const { data } = await meAPI();
-      store.dispatch(userActions.setLoggedUser(data));
 
+      console.log(">>>>>>>>>>>>>>>>>>>>>   cookieObject.access_token   <<<<<<<<<<<<<<<<<<<<<<");
+      console.log(cookieObject.access_token);
+      
+      const { data } = await axios.get("/api/auth/me");
+      // const { data } = await meAPI();
+
+      console.log(">>>>>>>>>>>>>>>>>>>>  data  <<<<<<<<<<<<<<<<<<<");
       console.log(data);
+      
+      store.dispatch(userActions.setLoggedUser(data));
     }
   } catch (e) {
     console.log(e);

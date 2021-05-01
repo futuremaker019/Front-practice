@@ -4,6 +4,8 @@ import { StoredUserType } from '../../../types/user';
 import Data from '../../../lib/data';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  console.log("==================== this is me.ts ========================");
+
   if (req.method === "GET") {
     try {
       const accessToken = req.headers.cookie;
@@ -16,6 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       console.log(userId);
 
       const user = Data.user.find({id: Number(userId)});
+      
       if (!user) {
         res.statusCode = 404;
         return res.send("해당 유저가 없습니다.");
@@ -27,6 +30,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       res.statusCode = 200;
 
       return res.send(userWithoutPassword);
+
     } catch (error) {
       res.statusCode = 500;
       return res.send(error);      
