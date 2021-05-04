@@ -62,8 +62,8 @@ interface SelectorContainerProps {
 }
 
 const Container = styled.div<SelectorContainerProps>`
-  ${({type}) => type === "normal" && normalSelectorStyle};
-  ${({type}) => type === "register" && RegisterSelectorStyle};
+  ${({ type }) => type === "normal" && normalSelectorStyle};
+  ${({ type }) => type === "register" && RegisterSelectorStyle};
 
   select {
       ${({isValid, validateMode}) => {
@@ -108,12 +108,12 @@ const Container = styled.div<SelectorContainerProps>`
 interface IProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
   options?: string[];
-  disabledOptions?: string[];
   value?: string;
   isValid? : boolean;
   useValidation?: boolean;
   errorMessage?: string;
   type?:"register" | "normal";
+  disabledOptions?: string[];
 }
 
 const Selector: React.FC<IProps> = ({
@@ -154,9 +154,8 @@ const Selector: React.FC<IProps> = ({
           <p>{errorMessage}</p>
         </div>
       )}
-
     </Container>
-  )
-}
+  );
+};
 
 export default React.memo(Selector);
