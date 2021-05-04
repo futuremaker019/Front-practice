@@ -30,20 +30,16 @@ const Container = styled.div`
 const disabledLargeBuildingTypeOptions = ["하나를 선택해주세요."];
 
 const RegisterRoomBuilding: React.FC = () => {
-  const largeBuildingType = useSelector(
-    (state) => state.registerRoom.largeBuildingType
-  );
+  const largeBuildingType = useSelector((state) => state.registerRoom.largeBuildingType);
 
   const dispatch = useDispatch();
 
   // 큰 범위 건물 유형 변경 시
-  const onChangeLargeBuildingType = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const onChangeLargeBuildingType = (event: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(registerRoomActions.setLargeBuildingType(event.target.value));
   };
 
-  //선택 거ㅓㄴ물 유형 options
+  //선택 건물 유형 options
   const detailBuildingOptions = useMemo(() => {
     switch (largeBuildingType) {
       case "아파트": {
@@ -83,9 +79,8 @@ const RegisterRoomBuilding: React.FC = () => {
 
   const buidlingType = useSelector((state) => state.registerRoom.buildingType);
 
-  const onChangeBuildingType = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  // 상세 건물 유형 변경 시
+  const onChangeBuildingType = (event: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(registerRoomActions.setBuildingType(event.target.value));
   };
 
@@ -108,10 +103,10 @@ const RegisterRoomBuilding: React.FC = () => {
         <Selector
           type="register"
           value={buidlingType || undefined}
-          onChange={onChangeBuildingType}
           disabled={!largeBuildingType}
           label="건물 유형을 선택하세요."
           options={detailBuildingOptions}
+          onChange={onChangeBuildingType}
         />
       </div>
     </Container>
