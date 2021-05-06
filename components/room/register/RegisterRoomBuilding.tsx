@@ -163,6 +163,7 @@ const RegisterRoomBuilding: React.FC = () => {
           label="우선 범위를 좁혀볼까요?"
           options={largeBuildingTypeList}
           onChange={onChangeLargeBuildingType}
+          isValid={!!largeBuildingType}
         />
       </div>
       <div className="register-room-building-selector-wrapper">
@@ -173,6 +174,7 @@ const RegisterRoomBuilding: React.FC = () => {
           label="건물 유형을 선택하세요."
           options={detailBuildingOptions}
           onChange={onChangeBuildingType}
+          isValid={!!buildingType}
         />
       </div>
       {buildingType && (
@@ -183,6 +185,7 @@ const RegisterRoomBuilding: React.FC = () => {
               value={roomType}
               options={roomTypeRadioOptions}          
               onChange={onChangeRoomType}
+              isValid={!!roomType}
             />
           </div>
           <div className="register-room-is-setup-for-guest-radio">
@@ -191,12 +194,13 @@ const RegisterRoomBuilding: React.FC = () => {
               value={isSetUpForGuest}
               onChange={onChangeIsSetUpForGuest}
               options={isSetUpForGuestOptions}
+              isValid={isSetUpForGuest !== null}
             />
           </div>
         </>
       )}
       <RegisterRoomFooter
-        isValid={false}
+        isValid={isValid}
         prevHref="/"
         nextHref="/room/register/bedrooms"
       />
