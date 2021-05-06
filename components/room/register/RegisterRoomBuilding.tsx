@@ -142,6 +142,14 @@ const RegisterRoomBuilding: React.FC = () => {
     dispatch(registerRoomActions.setIsSetUpForGuest(value));
   }
 
+  // 모든 값이 있는지 확인하기
+  const isValid = useMemo(() => {
+    if (!largeBuildingType || !buildingType || !roomType || !isSetUpForGuest === null) {
+      return false;
+    }
+    return true;
+  }, [largeBuildingType, buildingType, roomType, isSetUpForGuest]);
+
   return (
     <Container>
       <h2>등록할 숙소 종류는 무엇인가요?</h2>
