@@ -5,7 +5,7 @@ import { useSelector } from '../../store';
 import palette from '../../styles/palette';
 import WarningIcon from "../../public/static/svg/common/warning.svg"
 
-const Container = styled.div<{ isValid: boolean, validateMode: boolean }>`position
+const Container = styled.div<{ isValid: boolean, validateMode: boolean }>`
   .radio-label {
     font-size: 16px;
     font-weight: 600;
@@ -45,6 +45,7 @@ const Container = styled.div<{ isValid: boolean, validateMode: boolean }>`positi
     border: 1px solid ${palette.gray_b0};
     border-radius: 50%;
     outline: none;
+    cursor: pointer;
 
     ${({ validateMode, isValid }) => {
       if (validateMode) {
@@ -83,6 +84,7 @@ const Container = styled.div<{ isValid: boolean, validateMode: boolean }>`positi
   .radio-description {
     display: block;
     margin-top: 5px;
+    margin-left: 28px;
   }
   .radio-group-warning {
     margin-top: 8px;
@@ -121,9 +123,9 @@ const RadioGroup: React.FC<IProps> = ({
     <Container isValid={!!isValid} validateMode={validateMode}>
       <p className="radio-label">{label}</p>
       <div className="radio-list-wrapper">
-        {options?.map((option, index) => (
+        {options.map((option, index) => (
           <label key={index}>
-            <input 
+            <input
               type="radio"
               checked={value === option.value}
               onChange={() => onChange && onChange(option.value)}
@@ -144,7 +146,7 @@ const RadioGroup: React.FC<IProps> = ({
         </div>
       )}
     </Container>
-  )
-}
+  );
+};
 
 export default React.memo(RadioGroup);

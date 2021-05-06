@@ -118,7 +118,7 @@ interface IProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
 
 const Selector: React.FC<IProps> = ({
   label,
-  options = [], 
+  options = [],
   isValid,
   useValidation = true,
   errorMessage = "옵션을 선택하세요.",
