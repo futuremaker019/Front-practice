@@ -7,6 +7,7 @@ import palette from "../../../styles/palette"
 import Selector from '../../common/Selector';
 import RadioGroup from '../../common/RadioGroup';
 import { largeBuildingTypeList } from '../../../lib/staticData';
+import RegisterRoomFooter from './RegisterRoomFooter';
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -73,6 +74,7 @@ const RegisterRoomBuilding: React.FC = () => {
   const largeBuildingType = useSelector((state) => state.registerRoom.largeBuildingType);
   const buildingType = useSelector((state) => state.registerRoom.buildingType);
   const roomType = useSelector((state) => state.registerRoom.roomType);
+  const isSetUpForGuest = useSelector((state) => state.registerRoom.isSetUpForGuest);
 
   const dispatch = useDispatch();
 
@@ -166,15 +168,30 @@ const RegisterRoomBuilding: React.FC = () => {
         />
       </div>
       {buildingType && (
-        <div className="register-room-room-type-radio">
-          <RadioGroup 
-            label="게스트가 묵게 될 숙소 유형을 골라주세요."
-            value={roomType}
-            options={roomTypeRadioOptions}          
-            onChange={onChangeRoomType}
-          />
-        </div>
+        <>
+          <div className="register-room-room-type-radio">
+            <RadioGroup 
+              label="게스트가 묵게 될 숙소 유형을 골라주세요."
+              value={roomType}
+              options={roomTypeRadioOptions}          
+              onChange={onChangeRoomType}
+            />
+          </div>
+          <div className="register-room-is-setup-for-guest-radio">
+            <RadioGroup 
+              label="게스트만 사용하도록 만들어진 숙소인가요?"
+              value={isSetUpForGuest}
+              onChange={onChangeIsSetUpForGuest}
+              options={isSetUpForGuestOptions}
+            />
+          </div>
+        </>
       )}
+      <RegisterRoomFooter
+        isValid={false}
+        prevHref="/"
+        nextHref="/room/register/bedrooms"
+      />
     </Container>
   )
 }
