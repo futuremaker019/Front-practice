@@ -55,13 +55,11 @@ const registerRoom = createSlice({
       state.buildingType = action.payload;
       return state;
     },
-
     // 숙소 유형 변경하기
     setRoomType(state, action: PayloadAction<"entire" | "private" | "public">) {
       state.roomType = action.payload;
       return state;
     },
-
     // 게스트용 숙소인지 변경하기
     setIsSetUpForGuest(state, action: PayloadAction<boolean>) {
       state.isSetUpForGuest = action.payload;
@@ -71,7 +69,17 @@ const registerRoom = createSlice({
     setMaximumGuestCount(state, action: PayloadAction<number>) {
       state.maximumGuestCount = action.payload;
       return state;
-    }    
+    },
+    // 침실 개수 변경하기
+    setBedroomCount(state, action: PayloadAction<number>) {
+      state.bedRoomCount = action.payload;
+      return state;
+    },
+    // 최대 침대 개수 변경하기
+    setBedCount(state, action: PayloadAction<number>) {
+      state.bedCount = action.payload;
+      return state;
+    }
   },
 });
 
