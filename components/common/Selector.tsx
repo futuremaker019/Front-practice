@@ -127,6 +127,10 @@ const Selector: React.FC<IProps> = ({
   ...props
 }) => {
   const validateMode = useSelector((state) => state.common.validateMode);
+  console.log("props");
+  
+  console.log(props);
+
   return (
     <Container 
       isValid={!!isValid} 

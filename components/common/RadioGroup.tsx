@@ -116,6 +116,7 @@ const RadioGroup: React.FC<IProps> = ({
   onChange,
   isValid,
   errorMessage = "옵션을 선택하세요.",
+  ...props
 }) => {
   const validateMode = useSelector((state) => state.common.validateMode);
 
@@ -125,10 +126,11 @@ const RadioGroup: React.FC<IProps> = ({
       <div className="radio-list-wrapper">
         {options.map((option, index) => (
           <label key={index}>
-            <input
+            <input {...props}
               type="radio"
               checked={value === option.value}
               onChange={() => onChange && onChange(option.value)}
+              value={option.value}
             />
             <span>
               {option.label}

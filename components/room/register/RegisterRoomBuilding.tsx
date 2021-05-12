@@ -127,7 +127,7 @@ const RegisterRoomBuilding: React.FC = () => {
   };
   
   // 숙소 유형 변경 시
-  const onChangeRoomType = (value: any) => {
+  const onChangeRoomType = (value:any) => {
     const selected = value;
 
     dispatch(
@@ -144,7 +144,7 @@ const RegisterRoomBuilding: React.FC = () => {
 
   // 모든 값이 있는지 확인하기
   const isValid = useMemo(() => {
-    if (!largeBuildingType || !buildingType || !roomType || !isSetUpForGuest === null) {
+    if (!largeBuildingType || !buildingType || !roomType || isSetUpForGuest === null) {
       return false;
     }
     return true;
@@ -183,7 +183,7 @@ const RegisterRoomBuilding: React.FC = () => {
             <RadioGroup 
               label="게스트가 묵게 될 숙소 유형을 골라주세요."
               value={roomType}
-              options={roomTypeRadioOptions}          
+              options={roomTypeRadioOptions}
               onChange={onChangeRoomType}
               isValid={!!roomType}
             />
