@@ -8,6 +8,8 @@ import palette from '../../../styles/palette';
 import Counter from '../../common/Counter';
 import Selector from '../../common/Selector';
 import { bedroomCountList } from "../../../lib/staticData";
+import Button from '../../common/Button';
+import RegisterRoomBedTypes from './RegisterRoomBedTypes';
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -25,7 +27,6 @@ const Container = styled.div`
     font-size: 14px;
     max-width: 400px;
     margin-bottom: 24px;
-    max-width: 40px;
     word-break: keep-all;
   }
   .register-room-maximum-guest-counter-wrapper {
@@ -41,12 +42,43 @@ const Container = styled.div`
     width: 320px;
     margin-bottom: 57px;
   }
+  .register-room-bed-type-info {
+    margin-top:6px;
+    margin-bottom: 20px;
+    word-break: keep-all;
+    max-width: 400px;
+  }
+  .register-room-bed-type-list-wrapper {
+    width: 548px;
+  }
+  .register-room-bedroom {
+    width: 100%;
+    padding: 28px 0;
+    border-top: 1px solid ${palette.gray_dd};
+    &:last-child {
+      border-bottom: 1px solid ${palette.gray_dd};
+    }
+  }
+  .register-room-bed-type-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .register-room-bed-type-bedroom-texts {
+    margin-bottom: 28px;
+  }
+  .register-room-bed-type-bedroom {
+    font-size: 19px;
+    color: ${palette.gray_48};
+  }
 `;
 
 const RegisterRoomBedrooms: React.FC = () => {
   const maximumGuestCount = useSelector((state) => state.registerRoom.maximumGuestCount);
   const bedroomCount = useSelector((state) => state.registerRoom.bedRoomCount);
   const bedCount = useSelector((state) => state.registerRoom.bedCount);
+  const bedList = useSelector((state) => state.registerRoom.bedList);
 
   const dispatch = useDispatch();
 
@@ -65,7 +97,7 @@ const RegisterRoomBedrooms: React.FC = () => {
     <Container>
       <h2>숙소에 얼마나 많은 인원이 숙박할 수 있나요?</h2>
       <h3>2단계</h3>
-      <p className="room-register-step-info">
+      <p className="register-room-step-info">
         모든 게스트가 편안하게 숙박할 수 있도록 침대가 충분히 구비되어 있는지 확인하세요.
       </p>
       <div className="register-room-maximum-guest-counter-wrapper">
@@ -91,6 +123,35 @@ const RegisterRoomBedrooms: React.FC = () => {
           onChange={onChangeBedCount}
         />
       </div>
+      <h4>침대 유형</h4>
+      <p className="register-room-bed-type-info">
+        각 침실에 놓인 침대 유형을 명시하면 숙소에 침대가 어떻게 구비되어 있는지 게스트가 잘 파악할 수 있습니다.
+      </p>
+      {/* <div className="register-room-bed-type-list-wrapper">
+        {bedList.map((bedroom) => (
+          <div className="register-room-bedroom">
+            <div className="register-room-bed-type-top">
+              <div className="register-room-bed-type-bedroom-texts">
+                <p className="register-room-bed-tyoe-bedroom">
+                  {bedroom.id}번 침실
+                </p>
+                <p className="register-room-bed-type-bedroom-counts">
+                  침대 0개
+                </p>
+              </div>
+              <Button styleType="register" color="white">
+                침대 추가하기
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div> */}
+      <ul className="register-room-bed-type-list-wrapper">
+          {bedList.map((bedroom) => (
+            <RegisterRoomBedTypes bedroom={bedroom} />
+          ))}
+      </ul>
+
     </Container>
   )
 }
