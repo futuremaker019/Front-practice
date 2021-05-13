@@ -10,6 +10,7 @@ import Selector from '../../common/Selector';
 import { bedroomCountList } from "../../../lib/staticData";
 import Button from '../../common/Button';
 import RegisterRoomBedTypes from './RegisterRoomBedTypes';
+import RegisterRoomBedList from './RegisterRoomBedList';
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -72,6 +73,9 @@ const Container = styled.div`
     font-size: 19px;
     color: ${palette.gray_48};
   }
+  .register-room-bed-type-list {
+    width: 548px;
+  }
 `;
 
 const RegisterRoomBedrooms: React.FC = () => {
@@ -125,33 +129,10 @@ const RegisterRoomBedrooms: React.FC = () => {
       </div>
       <h4>침대 유형</h4>
       <p className="register-room-bed-type-info">
-        각 침실에 놓인 침대 유형을 명시하면 숙소에 침대가 어떻게 구비되어 있는지 게스트가 잘 파악할 수 있습니다.
+        각 침실에 놓인 침대 유형을 명시하면 숙소에 침대가 어떻게 구비되어 있는지
+        게스트가 잘 파악할 수 있습니다.
       </p>
-      {/* <div className="register-room-bed-type-list-wrapper">
-        {bedList.map((bedroom) => (
-          <div className="register-room-bedroom">
-            <div className="register-room-bed-type-top">
-              <div className="register-room-bed-type-bedroom-texts">
-                <p className="register-room-bed-tyoe-bedroom">
-                  {bedroom.id}번 침실
-                </p>
-                <p className="register-room-bed-type-bedroom-counts">
-                  침대 0개
-                </p>
-              </div>
-              <Button styleType="register" color="white">
-                침대 추가하기
-              </Button>
-            </div>
-          </div>
-        ))}
-      </div> */}
-      <ul className="register-room-bed-type-list-wrapper">
-          {bedList.map((bedroom) => (
-            <RegisterRoomBedTypes bedroom={bedroom} />
-          ))}
-      </ul>
-
+      <RegisterRoomBedList />
     </Container>
   )
 }
