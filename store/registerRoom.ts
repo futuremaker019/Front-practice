@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { Settings } from 'node:http2';
 import { BedType } from '../types/room';
 
 type RegisterRoomState = {
@@ -7,10 +8,20 @@ type RegisterRoomState = {
   roomType: string | null;
   isSetUpForGuest: boolean | null;
   maximumGuestCount: number;
-  bedRoomCount: number;
+  bedroomCount: number;
   bedCount: number;
   bedList: {id: number; beds:{type: BedType; count: number}[]}[];
   publicBedList: {type: BedType; count: number}[];
+  bathroomCount: number;
+  bathroomType: "private" | "public" | null;
+  country: string;
+  city: string;
+  district: string;
+  streetAddress: string;
+  detailAddress: string;
+  postcode: string;
+  latitude: number;
+  longitude: number;
 }
 
 // 초기 상태
@@ -26,13 +37,33 @@ const initialState: RegisterRoomState = {
   // 최데 숙박 인원
   maximumGuestCount: 1,
   // 침실 개수
-  bedRoomCount: 0,
+  bedroomCount: 0,
   // 침대 개수
   bedCount: 1,
   // 침대 유형
   bedList: [],
   // 공용공간 침대 유형
   publicBedList: [],
+  // 욕실 개수
+  bathroomCount: 1,
+  // 욕실 유형
+  bathroomType: null,
+  // 국가/지역
+  country: "",
+  // 시/도
+  city:"",
+  // 시군구
+  district: "",
+  // 도로명 주소
+  streetAddress: "",
+  // 동호수
+  detailAddress: "",
+  // 우편번호
+  postcode: "",
+  // 위도
+  latitude: 0,
+  // 경도
+  longitude: 0,
 };
 
 const registerRoom = createSlice({
@@ -75,7 +106,7 @@ const registerRoom = createSlice({
       const bedroomCount = action.payload;
       let { bedList } = state;
 
-      state.bedRoomCount = bedroomCount;
+      state.bedroomCount = bedroomCount;
 
       if (bedroomCount < bedList.length) {
         // 기존 침대 개수가 더 많으면 초과 부분 잘라내기
@@ -95,6 +126,7 @@ const registerRoom = createSlice({
       state.bedCount = action.payload;
       return state;
     },
+    // 침대 타입 개수 변경하기
     setBedTypeCount(
       state, 
       action: PayloadAction<{bedroomId: number; type: BedType; count: number;}>) {
@@ -124,6 +156,7 @@ const registerRoom = createSlice({
       const {type,count} = action.payload;
 
       const index = state.publicBedList.findIndex((bed) => bed.type === type);
+      // findIndex는 반환값이 없으면 -1을 반환한다.
       if (index === -1) {
         // 타입이 없다면
         state.publicBedList = [...state.publicBedList, {type, count}];
@@ -136,6 +169,48 @@ const registerRoom = createSlice({
         state.publicBedList[index].count = count;
       }
       return state;
+    },
+
+    // 욕실 개수 변경하기
+    setBathroomCount(state, action: PayloadAction<number>) {
+      state.bathroomCount = action.payload;
+    },
+
+    // 욕실 유형 변경하기
+    setBathroomType(state, action: PayloadAction<"private" | "public">) {
+      state.bathroomType = action.payload;
+    },
+    // 국가 변경하기
+    setCountry(state, action: PayloadAction<string>) {
+      state.country = action.payload;
+    },
+    // 시/도 변경하기
+    setCity(state, action: PayloadAction<string>) {
+      state.city = action.payload;
+    },
+    // 시/군/구 변경하기
+    setDistrict(state, action: PayloadAction<string>) {
+      state.district = action.payload;
+    },
+    // 도로묭주소 변경하기
+    setStreetAddress(state, action: PayloadAction<string>) {
+      state.streetAddress = action.payload;
+    },
+    // 동호수 변경하기
+    setDetailAddress(state, action: PayloadAction<string>) {
+      state.detailAddress = action.payload;
+    },
+    // 우편번호 변경하기
+    setPostcode(state, action: PayloadAction<string>) {
+      state.postcode = action.payload;
+    },
+    // 위도 변경하기
+    setLatitude(state, action: PayloadAction<number>) {
+      state.latitude = action.payload;
+    },
+    // 경도 변경하기
+    setLongitude(state, action: PayloadAction<number>) {
+      state.longitude = action.payload;
     },
   },
 });

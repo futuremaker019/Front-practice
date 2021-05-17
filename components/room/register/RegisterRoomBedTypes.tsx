@@ -46,7 +46,6 @@ const Container = styled.li`
     font-size: 19px;
     color: ${palette.gray_76};
   }
-  
 `;
 
 interface IProps {
@@ -58,6 +57,9 @@ const RegisterRoomBedTypes: React.FC<IProps> = ({bedroom}) => {
 
   // 선택된 침대 옵션들
   const [activedBedOptions, setActivedBedOptions] = useState<BedType[]>(initialBedOptions);
+  console.log("activedBedOptions : " + activedBedOptions);
+  
+
   const [opened, setOpened] = useState(false);
 
   const dispatch = useDispatch();
@@ -86,11 +88,12 @@ const RegisterRoomBedTypes: React.FC<IProps> = ({bedroom}) => {
     dispatch(
       registerRoomActions.setBedTypeCount({
         bedroomId: bedroom.id,
-        type,
+        type, 
         count: value,
       })
     );
 
+  console.log("activedBedOptions >>> ");
   console.log(activedBedOptions);
 
   return (
@@ -109,39 +112,38 @@ const RegisterRoomBedTypes: React.FC<IProps> = ({bedroom}) => {
               (totlaBedsCount === 0 ? "침대 추가하기" : "침대 수정하기")}
           </Button>
       </div>
-        
-        {opened && (
-          <div className="register-room-bed-type-counters">
-            {activedBedOptions.map((type) => (
-              <div className="register-room-bed-type-counter" key={type}>
-                <Counter 
-                  label={type}
-                  value={
-                    bedroom.beds.find((bed) => bed.type === type)?.count || 0
-                  }
-                  key={type}
-                  onChange={(value) => { 
-                    onChangeBedTypeCount(value, type); 
-                  }}
-                />
-              </div>
-            ))}
-            <Selector 
-              type="register"
-              options={lastBedOptions}
-              defaultValue="다른 침대 추가"
-              value="다른 침대 추가"
-              disabledOptions={["다른 침대 추가"]}
-              useValidation={false}
-              onChange={(e) => 
-                setActivedBedOptions([
-                  ...activedBedOptions,
-                  e.target.value as BedType,
-                ])
-              }
-            />
-          </div>
-        )}
+      {opened && (
+        <div className="register-room-bed-type-counters">
+          {activedBedOptions.map((type) => (
+            <div className="register-room-bed-type-counter" key={type}>
+              <Counter 
+                label={type}
+                value={
+                  bedroom.beds.find((bed) => bed.type === type)?.count || 0
+                }
+                key={type}
+                onChange={(value) => { 
+                  onChangeBedTypeCount(value, type); 
+                }}
+              />
+            </div>
+          ))}
+          <Selector 
+            type="register"
+            options={lastBedOptions}
+            defaultValue="다른 침대 추가"
+            value="다른 침대 추가"
+            disabledOptions={["다른 침대 추가"]}
+            useValidation={false}
+            onChange={(e) => 
+              setActivedBedOptions([
+                ...activedBedOptions,
+                e.target.value as BedType,
+              ])
+            }
+          />
+        </div>
+      )}
     </Container>
   )
 }

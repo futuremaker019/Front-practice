@@ -79,9 +79,8 @@ const Container = styled.div`
 
 const RegisterRoomBedrooms: React.FC = () => {
   const maximumGuestCount = useSelector((state) => state.registerRoom.maximumGuestCount);
-  const bedroomCount = useSelector((state) => state.registerRoom.bedRoomCount);
+  const bedroomCount = useSelector((state) => state.registerRoom.bedroomCount);
   const bedCount = useSelector((state) => state.registerRoom.bedCount);
-  const bedList = useSelector((state) => state.registerRoom.bedList);
 
   const dispatch = useDispatch();
 
