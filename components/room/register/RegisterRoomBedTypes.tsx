@@ -106,7 +106,7 @@ const RegisterRoomBedTypes: React.FC<IProps> = ({bedroom}) => {
             {bedsText}
           </p>
         </div>
-          <Button onClick={toggleOpended} styleType="register" color="white">
+          <Button onClick={toggleOpended} color="white">
             {opened && "완료"}
             {!opened && 
               (totlaBedsCount === 0 ? "침대 추가하기" : "침대 수정하기")}
