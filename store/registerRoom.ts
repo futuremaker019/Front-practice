@@ -23,6 +23,7 @@ type RegisterRoomState = {
   latitude: number;
   longitude: number;
   amentities: string[];
+  conveniences: string[];
 }
 
 // 초기 상태
@@ -67,6 +68,8 @@ const initialState: RegisterRoomState = {
   longitude: 0,
   // 편의 시설
   amentities: [],
+  // 편의 공간
+  conveniences: [],
 };
 
 const registerRoom = createSlice({
@@ -219,6 +222,10 @@ const registerRoom = createSlice({
     setAmetities(state, action:PayloadAction<string[]>) {
       state.amentities = action.payload;
     },
+    // 편의 공간 변경하기
+    setConveniences(state, action: PayloadAction<string[]>) {
+      state.conveniences = action.payload;
+    }
   },
 });
 
