@@ -50,8 +50,8 @@ const RegisterConveniences: React.FC = () => {
         />
       </div>
       <RegisterRoomFooter 
-        prevHref="/room/regiser/amentities"
-        nextHref="/room/regiser/photo"
+        prevHref="/room/register/amentities"
+        nextHref="/room/register/photo"
       />
     </Container>
   )

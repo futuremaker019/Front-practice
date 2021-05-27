@@ -126,6 +126,7 @@ const RegisterLocation: React.FC = () => {
           colorReverse
           icon={<NavigationIcon />}
           onClick={onClickGetCurrentLocation}
+          width="200px"
         >
           {loading ? "불어오는 중..." : "현재 위치 사용"}
         </Button>
@@ -135,9 +136,9 @@ const RegisterLocation: React.FC = () => {
           type="register"
           options={countryList}
           useValidation={false}
-          defaultValue="국가/지역 선택"
+          //defaultValue="국가/지역 선택"
           disabledOptions={["국가/지역 선택"]}
-          value={country}
+          value={country || "국가/지역 선택"}
           onChange={onChangeCountry}
         />
       </div>

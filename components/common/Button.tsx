@@ -8,13 +8,13 @@ const getButtonColor = (color: string, colorReverse: boolean) => {
     switch (color) {
       case "dark_cyan":
         return css`
-          background-color: ${palette.dark_cyan};
+          border: 2px solid ${palette.dark_cyan};
           color: ${palette.dark_cyan};
           background-color: white;
         `;
       default:
         return css`
-          background-color: ${palette.black};
+          border: 2px solid ${palette.black};
           color: ${palette.black};
           background-color: white;
         `;
@@ -31,12 +31,33 @@ const getButtonColor = (color: string, colorReverse: boolean) => {
         background-color: ${palette.bittersweet};
         color: white;
       `;
+    case "amaranth":
+      return css`
+        background-color: ${palette.amaranth};
+        color: white;
+      `;
     default:
       return css`
         background-color: white;
         color: ${palette.black};
         border: 1px solid ${palette.gray_c4};
       `;
+  }
+}
+
+const getButtonSize = (size: "small" | "medium") => {
+  switch (size) {
+    case "medium":
+      return css`
+        height: 48px;
+      `;
+    case "small":
+      return css`
+        font-size: 14px;
+        height: 36px;
+      `;
+    default:
+      return "";
   }
 }
 
@@ -70,6 +91,7 @@ const RegisterButtonStyle = css`
 interface StyledButtonProps {
   width: string | undefined;
   colorReverse: boolean;
+  size: "small" | "medium";
 }
 
 const Container = styled.button<StyledButtonProps>`
@@ -82,10 +104,12 @@ const Container = styled.button<StyledButtonProps>`
   border: 0;
   border-radius: 4px;
   font-size: 18px;
+  font-weight: 700;
   outline: none;
   cursor: pointer;
   width: ${(props) => props.width};
   ${(props) => getButtonColor(props.color || "", props.colorReverse)};
+  ${(props) => getButtonSize(props.size)}
 
   svg {
     margin-right: 12px;
@@ -94,10 +118,11 @@ const Container = styled.button<StyledButtonProps>`
 
 interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  color?: "dark_cyan" | "white" | "bittersweet";
+  color?: "dark_cyan" | "white" | "bittersweet" | "amaranth";
   width?: string;
   colorReverse?: boolean;
   icon?: JSX.Element;
+  size?: "small" | "medium";
 }
 
 const Button: React.FC<IProps> = ({ 
@@ -106,13 +131,16 @@ const Button: React.FC<IProps> = ({
   width,
   colorReverse = false,
   icon,
+  size = "medium",
   ...props 
 }) => {
+
   return (
     <Container 
-      {...props} 
+      {...props}
       color={color}
       width={width}
+      size={size}
       colorReverse={colorReverse}
     >
       {icon}

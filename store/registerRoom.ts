@@ -1,30 +1,38 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { Payload } from 'aws-sdk/clients/iotdata';
 import { Settings } from 'node:http2';
 import { BedType } from '../types/room';
+import {RegisterRoomState} from '../types/reduxState'
 
-type RegisterRoomState = {
-  largeBuildingType: string | null;
-  buildingType: string | null;
-  roomType: string | null;
-  isSetUpForGuest: boolean | null;
-  maximumGuestCount: number;
-  bedroomCount: number;
-  bedCount: number;
-  bedList: {id: number; beds:{type: BedType; count: number}[]}[];
-  publicBedList: {type: BedType; count: number}[];
-  bathroomCount: number;
-  bathroomType: "private" | "public" | null;
-  country: string;
-  city: string;
-  district: string;
-  streetAddress: string;
-  detailAddress: string;
-  postcode: string;
-  latitude: number;
-  longitude: number;
-  amentities: string[];
-  conveniences: string[];
-}
+// type RegisterRoomState = {
+//   largeBuildingType: string | null;
+//   buildingType: string | null;
+//   roomType: string | null;
+//   isSetUpForGuest: boolean | null;
+//   maximumGuestCount: number;
+//   bedroomCount: number;
+//   bedCount: number;
+//   bedList: {id: number; beds:{type: BedType; count: number}[]}[];
+//   publicBedList: {type: BedType; count: number}[];
+//   bathroomCount: number;
+//   bathroomType: "private" | "public" | null;
+//   country: string;
+//   city: string;
+//   district: string;
+//   streetAddress: string;
+//   detailAddress: string;
+//   postcode: string;
+//   latitude: number;
+//   longitude: number;
+//   amentities: string[];
+//   conveniences: string[];
+//   photos: string[];
+//   description: string;
+//   title: string;
+//   price: number;
+//   startDate: string | null;
+//   endDate: string | null;
+// }
 
 // 초기 상태
 const initialState: RegisterRoomState = {
@@ -70,6 +78,17 @@ const initialState: RegisterRoomState = {
   amentities: [],
   // 편의 공간
   conveniences: [],
+  // 사진 업로드
+  photos: [],
+  description: "",
+  // 숙소 제목
+  title: "",
+  // 숙소 금액
+  price: 0,
+  // 예약 시간 날짜
+  startDate: null,
+  // 예약 마감 날짜
+  endDate: null,
 };
 
 const registerRoom = createSlice({
@@ -225,7 +244,29 @@ const registerRoom = createSlice({
     // 편의 공간 변경하기
     setConveniences(state, action: PayloadAction<string[]>) {
       state.conveniences = action.payload;
-    }
+    },
+    // 숙소 사진 변경하기
+    setPhotos(state, action: PayloadAction<string[]>) {
+      state.photos = action.payload;
+    },
+    // 숙소 설명 변경하기
+    setDescription(state, action: PayloadAction<string>) {
+      state.description = action.payload;
+    },
+    setTitle(state, action: PayloadAction<string>) {
+      state.title = action.payload;
+    },
+    setPrice(state, action: PayloadAction<number>) {
+      state.price = action.payload;
+    },
+    // 예약 시작 날짜 변경하기
+    setStartDate(state, action: PayloadAction<string | null>) {
+      state.startDate = action.payload;
+    },
+    // 예약 마감 날짜 변경하기
+    setEndDate(state, action: PayloadAction<string | null>) {
+      state.endDate = action.payload;
+    },
   },
 });
 

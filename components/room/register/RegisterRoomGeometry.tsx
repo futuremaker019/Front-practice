@@ -60,7 +60,7 @@ const RegisterRoomGeometry: React.FC = () => {
   const loadMapScript = () => {
     return new Promise<void>((resolve) => {
       const script = document.createElement("script");
-      script.src = `https://maps.googleapis.com/maps/api/js?key=&{process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}&callback=initMap`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}&callback=initMap`;
       script.defer = true;
       document.head.appendChild(script);
       script.onload = () => {
