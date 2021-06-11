@@ -159,7 +159,7 @@ const SearchRoomBarLocation: React.FC = () => {
     if (searchKeyword) {
       searchPlaces();
     }
-  }, [location])
+  }, [searchKeyword])
 
   
   return (
@@ -184,7 +184,13 @@ const SearchRoomBarLocation: React.FC = () => {
             )}
             {!isEmpty(results) && 
               results.map((result, index) => (
-                <li key={index}>{result.description}</li>
+                <li
+                  role="presentation" 
+                  key={index}
+                  onClick={() => onClickResult(result.placeId)}
+                >
+                  {result.description}
+                </li>
               ))}
             {location && isEmpty(results) && <li>검색 결과가 없습니다.</li>}
           </ul>

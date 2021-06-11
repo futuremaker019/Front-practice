@@ -7,4 +7,9 @@ const index: NextPage = () => {
   return <Home />;
 }
 
+index.getInitialProps = async ({query}) => {
+  console.log(query);
+  return {};
+}
+
 export default index;

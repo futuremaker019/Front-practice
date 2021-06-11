@@ -60,7 +60,7 @@ const Container = styled.div`
   .search-room-bar-button-wrapper {
     position: absolute;
     right: 0;
-    top: 12px;
+    top: 9px;
     right: 12px;
   }
 `;
@@ -89,12 +89,16 @@ const SearchRoomGuests: React.FC = () => {
     dispatch(searchRoomActions.setInfanctsCount(value));
   }
 
+  // 게스트 인원 수 텍스트
+  const guetsText = `게스트 ${adultCount}명
+  ${!childrenCount ? "" : `, 어린이${childrenCount}명`}
+  ${!infantsCount ? "" : `, 유아${infantsCount}명`}`;
   return (
     <Container onClick={() => setPopupOpened(true)}>
       <OutsideClickHandler onOutsideClick={() => setPopupOpened(false)}>
         <div className="search-room-bar-guest-texts">
           <p className="search-room-bar-guest-label">인원</p>
-          <p className="search-room-bar-guest-text">성인 0명</p>
+          <p className="search-room-bar-guest-text">{guetsText}</p>
         </div>
 
         <div className="search-room-bar-button-wrapper">
