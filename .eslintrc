@@ -14,13 +14,15 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+//    "plugin:prettier/recommended"
   ],
   "plugins": [
     "import",
     "react-hooks"
   ],
   "rules": {
-    "no-unused-vars": ["error", { "vars": "all", "args": "none", "ignoreRestSiblings": false }]
+    "quotes": ["error", "double"],
+    "no-unused-vars": "off" // 사용 안한 변수 경고 중복,
   }
 }
