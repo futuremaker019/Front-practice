@@ -9,20 +9,17 @@ export const initialState = {
 
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
-		case "LOG_IN":
+		case 'LOG_IN':
 			return {
 				...state,
 				isLoggedIn: true,
 				user: action.data
 			};
-		case "LOG_OUT":
+		case 'LOG_OUT':
 			return {
 				...state,
-				user: {
-					...state.user,
-					isLoggedIn: false,
-					user: null
-				}
+				isLoggedIn: false,
+				user: null
 			};
 		default:
 			return state;
@@ -31,14 +28,14 @@ const reducer = (state = initialState, action) => {
 
 export const loginAction = (data) => {
 	return {
-		type: "LOG_IN",
+		type: 'LOG_IN',
 		data
 	};
 };
 
 export const logoutAction = () => {
 	return {
-		type: "LOG_OUT"
+		type: 'LOG_OUT'
 	};
 };
 

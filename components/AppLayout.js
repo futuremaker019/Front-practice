@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import Link from "next/link";
-import { Menu, Input, Row, Col } from "antd";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import Link from 'next/link';
+import { Menu, Input, Row, Col } from 'antd';
+import styled from 'styled-components';
 
-import UserProfile from "../components/UserProfile";
-import LoginForm from "../components/LoginForm";
-import { useSelector } from "react-redux";
+import UserProfile from '../components/UserProfile';
+import LoginForm from '../components/LoginForm';
+import { useSelector } from 'react-redux';
 
 const SearchInput = styled(Input.Search)`
 	vertical-align: middle;
@@ -17,7 +17,7 @@ const AppLayout = ({ children }) => {
 
 	return (
 		<div>
-			<Menu mode={"horizontal"}>
+			<Menu mode={'horizontal'}>
 				<Menu.Item>
 					<Link href="/">
 						<a>노드버드</a>
@@ -46,9 +46,9 @@ const AppLayout = ({ children }) => {
 				</Col>
 				<Col xs={24} md={6}>
 					<a
-						href={"https://www.zerocho.com"}
-						target={"_blank"}
-						rel={"noreferrer noopener"}
+						href={'https://www.zerocho.com'}
+						target={'_blank'}
+						rel={'noreferrer noopener'}
 					>
 						Made by ZeroCho
 					</a>

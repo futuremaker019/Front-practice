@@ -1,7 +1,7 @@
-import React, { useCallback } from "react";
-import { Avatar, Card, Button } from "antd";
-import { useDispatch } from "react-redux";
-import { logoutAction } from "../reducers/user";
+import React, { useCallback } from 'react';
+import { Avatar, Card, Button } from 'antd';
+import { useDispatch } from 'react-redux';
+import { logoutAction } from '../reducers/user';
 
 const UserProfile = () => {
 	const dispatch = useDispatch();
@@ -14,15 +14,15 @@ const UserProfile = () => {
 		<Card>
 			actions=
 			{[
-				<div key={"twit"}>
+				<div key={'twit'}>
 					짹짹
 					<br />0
 				</div>,
-				<div key={"following"}>
+				<div key={'following'}>
 					팔로잉
 					<br />0
 				</div>,
-				<div key={"follower"}>
+				<div key={'follower'}>
 					팔로워
 					<br />0
 				</div>
