@@ -1,28 +1,25 @@
 {
-  "parserOptions": {
-    "ecmaVersion": 2020,
-    // import export 하기 때문에 모듈로 설치해준다.
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "env": {
-    "browser": true,
-    "node":true,
-    "es6": true
-  },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-//    "plugin:prettier/recommended"
-  ],
-  "plugins": [
-    "import",
-    "react-hooks"
-  ],
-  "rules": {
-    "quotes": ["error", "single"],
-    "no-unused-vars": "off" // 사용 안한 변수 경고 중복,
-  }
+	"parserOptions": {
+		"ecmaVersion": 2020,
+		// import export 하기 때문에 모듈로 설치해준다.
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
+	"env": {
+		"browser": true,
+		"node": true,
+		"es6": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:prettier/recommended"
+	],
+	"plugins": ["import", "react-hooks"],
+	"rules": {
+		"quotes": ["error", "single"],
+		"no-unused-vars": "off" // 사용 안한 변수 경고 중복,
+	}
 }

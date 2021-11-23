@@ -27,9 +27,9 @@ export const initialState = {
 				},
 				{
 					User: {
-						nickname: 'nero'
+						nickname: 'hero'
 					},
-					content: '우와 개정판이 나왔군요~'
+					content: '언른 사고싶어요~'
 				}
 			]
 		}
@@ -38,6 +38,7 @@ export const initialState = {
 	postAdded: false
 };
 
+// 게시글 작성하는 action
 const ADD_POST = 'ADD_POST';
 export const addPost = {
 	type: ADD_POST
