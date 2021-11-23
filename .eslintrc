@@ -20,6 +20,7 @@
 	"plugins": ["import", "react-hooks"],
 	"rules": {
 		"quotes": ["error", "single"],
-		"no-unused-vars": "off" // 사용 안한 변수 경고 중복,
+		"no-unused-vars": "off", 				// 사용 안한 변수 경고 중복,
+		"react/react-in-jsx-scope" : "off"
 	}
 }
