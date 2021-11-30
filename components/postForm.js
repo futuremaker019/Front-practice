@@ -15,8 +15,14 @@ const PostForm = () => {
 		setText(e.target.value);
 	}, []);
 
+	// 이미지 버튼 클릭시 파일 검색창이 나오게 만들어준다.
+	const onClickImageUpload = useCallback(() => {
+		imageInput.current?.click();
+	}, [imageInput.current]);
+
 	const onSubmit = useCallback(() => {
 		dispatch(addPost);
+		setText('');
 	}, []);
 
 	return (
@@ -32,7 +38,7 @@ const PostForm = () => {
 				placeholder={'어떤 신기한 일이 있었나요?'}
 			/>
 			<div>
-				<Input type={'file'} multiple hidden ref={imageInput} />
+				<input type={'file'} multiple hidden ref={imageInput} />
 				<Button onClick={onClickImageUpload}>이미지 업로드</Button>
 				<Button type={'primary'} style={{ float: 'right' }} htmlType={'submit'}>
 					짹짹
