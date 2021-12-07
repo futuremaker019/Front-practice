@@ -9,13 +9,13 @@ export const initialState = {
 			content: '첫 번째 게시글 #해시태그 #익스프레스',
 			Images: [
 				{
-					src: 'https://bookthumb-printf.pstatic.net/cover/137/995/13799585.jpg?update=20180726'
+					src: 'https://bookthumb-phinf.pstatic.net/cover/137/995/13799585.jpg?update=20180726'
 				},
 				{
-					src: 'https://bookthumb-printf.pstatic.net/cover/137/995/13799585.jpg?update=20180726'
+					src: 'https://gimg.gilbut.co.kr/book/BN001958/rn_view_BN001958.jpg'
 				},
 				{
-					src: 'https://bookthumb-printf.pstatic.net/cover/137/995/13799585.jpg?update=20180726'
+					src: 'https://gimg.gilbut.co.kr/book/BN001958/rn_view_BN001958.jpg'
 				}
 			],
 			Comments: [
