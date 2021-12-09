@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import { PlusOutlined } from '@ant-design/icons';
+import ImagesZoom from './imagesZoom';
 
 const PostImages = ({ images }) => {
 	// 클릭하면 확대햐서 볼수 있게 만들어준다.
@@ -9,6 +10,11 @@ const PostImages = ({ images }) => {
 	const onZoom = useCallback(() => {
 		setShowImageZoom(true);
 	}, []);
+
+	// 이미지를 클릭시 모달 형태로 이미지를 확대해준다.
+	const onClose = useCallback(() => {
+		setShowImageZoom(false);
+	}, [])
 
 	if (images.length === 1) {
 		return (
@@ -19,6 +25,7 @@ const PostImages = ({ images }) => {
 					alt={images[0].src}
 					onClick={onZoom}
 				/>
+				{showImagesZoom && <ImagesZoom images={images} onClose={onClose} />}
 			</>
 		);
 	}
@@ -39,6 +46,7 @@ const PostImages = ({ images }) => {
 					alt={images[1].src}
 					onClick={onZoom}
 				/>
+				{showImagesZoom && <ImagesZoom images={images} onClose={onClose} />}
 			</>
 		);
 	}
@@ -64,9 +72,10 @@ const PostImages = ({ images }) => {
 				>
 					<PlusOutlined />
 					<br />
-					{images.length - 1} 개의 사진 더보기 >
+					{images.length - 1} 개의 사진 더보기
 				</div>
 			</div>
+			{showImagesZoom && <ImagesZoom images={images} onClose={onClose} />}
 		</>
 	);
 };
