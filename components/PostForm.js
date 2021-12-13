@@ -1,19 +1,22 @@
 import { Button, Form, Input } from 'antd';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPost } from '../reducers/post';
+import useInput from '../hooks/useInput';
 
 const PostForm = () => {
-	const { imagePaths } = useSelector((state) => state.post);
+	const { imagePaths, addPostDone } = useSelector((state) => state.post);
 	const dispatch = useDispatch();
 
 	// DOM에 직접 접근하기 위해 사용한다.
 	const imageInput = useRef();
-	const [text, setText] = useState('');
+	const [text, onChangeText, setText] = useInput('');
 
-	const onChangeText = useCallback((e) => {
-		setText(e.target.value);
-	}, []);
+	useEffect(() => {
+		if (addPostDone) {
+			setText('');
+		}
+	}, [addPostDone]);
 
 	// 이미지 버튼 클릭시 파일 검색창이 나오게 만들어준다.
 	const onClickImageUpload = useCallback(() => {
@@ -21,8 +24,7 @@ const PostForm = () => {
 	}, [imageInput.current]);
 
 	const onSubmit = useCallback(() => {
-		dispatch(addPost);
-		setText('');
+		dispatch(addPost(text));
 	}, []);
 
 	return (
