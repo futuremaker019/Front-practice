@@ -23,15 +23,16 @@ const PostForm = () => {
 		imageInput.current?.click();
 	}, [imageInput.current]);
 
-	const onSubmit = useCallback(() => {
+	const onSubmitForm = useCallback(() => {
+		console.log('text : ', text);
 		dispatch(addPost(text));
-	}, []);
+	}, [text]);
 
 	return (
 		<Form
 			style={{ margin: '10px 0 20px' }}
 			encType="multipart/form-data"
-			onFinish={onSubmit}
+			onFinish={onSubmitForm}
 		>
 			<Input.TextArea
 				value={text}
@@ -49,7 +50,7 @@ const PostForm = () => {
 			<div>
 				{imagePaths.map((v) => (
 					<div key={v} style={{ display: 'inline-block' }}>
-						<img src={v} style={{ width: '200px' }} />
+						<img src={v} style={{ width: '200px' }} alt={v} />
 						<div>
 							<Button>제거</Button>
 						</div>
