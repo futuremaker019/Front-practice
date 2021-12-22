@@ -1,53 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { NavigationContainer } from '@react-navigation/native';
+import LogInScreen from './screens/LogIn';
+import DetailScreen from './screens/AssetDetail';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <View style={{flex: 0.5, backgroundColor: 'white'}}>
-
-      </View>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>SIMMS</Text>
-      </View>
-      <View style={styles.title}>
-        <Text style={styles.titleText}>로그인</Text>
-      </View>
-      <View style={styles.content}></View>
-      <View style={styles.footer}></View>
-      <StatusBar style='auto'/>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name='Login' component={LogInScreen} options={{title: 'SIMMS'}}/>
+        <Stack.Screen name='Details' component={DetailScreen} options={{title: 'SIMMS'}}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: 'tomato',
-  },
-  headerText: {
-    fontSize: 20
-  },
-  title: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: 'teal'
-  },
-  titleText: {
-    fontSize: 20
-  },
-  content: {
-    flex: 10,
-    backgroundColor: 'orange'
-  },
-  footer: {
-    flex: 1,
-    backgroundColor: 'lightgreen'
-  }
-});
 
 export default App;
