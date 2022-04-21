@@ -1,37 +1,28 @@
-import './App.css';
+// import './App.css';
 import MyHeader from './MyHeader';
 import MyFooter from './MyFooter';
+import Counter from './Counter';
+import Container from './Container';
 
 function App() {
-  const style = {
-    App: {
-      backgroundColor: 'pink',
-    },
-    h2: {
-      color: 'red',
-    },
-    bold_text: {
-      color: 'green',
-    },
+  const number = 5;
+
+  const countProps = {
+    a: 1,
+    b: 2,
   };
 
-  let name = 'Jung';
-
-  const number1 = 5;
-  const number2 = 6;
-
   return (
-    <div className="App">
-      <MyHeader />
-      <header className="App-header">
-        <h2 style={style.h2}>안녕 리액트 {name}</h2>
-        <b style={style.bold_text} id="bold_text">
-          {number1}는 : {number1 % 2 === 0 ? '짝수' : '홀수'} <br />
-          {number2}는 : {number2 % 2 === 0 ? '짝수' : '홀수'}
-        </b>
-      </header>
-      <MyFooter />
-    </div>
+    <Container>
+      <div>
+        <MyHeader />
+
+        {/* 부모 컴포넌트(APP)에서 자식 컴포넌트(Counter)로 값을 전달한다. */}
+        {/* 전달된 props는 객체 형태로 만들어진다. */}
+        {/* <Counter a={1} initialValue={5} /> */}
+        <Counter {...countProps} />
+      </div>
+    </Container>
   );
 }
 
