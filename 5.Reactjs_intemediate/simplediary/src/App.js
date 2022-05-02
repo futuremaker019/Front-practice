@@ -35,7 +35,7 @@ import DiaryList from './DiaryList';
 // ];
 
 function App() {
-  const [data, setDate] = useState([]);
+  const [data, setData] = useState([]);
 
   // useRef의 초기값 설정을 0으로 한다.
   const dataId = useRef(0);
@@ -50,13 +50,19 @@ function App() {
       id: dataId.current,
     };
     dataId.current += 1;
-    setDate([...data, newItem]);
+    setData([...data, newItem]);
+  };
+
+  const onDelete = (targetId) => {
+    console.log(`${targetId}가 삭제되었습니다.`);
+    const newDiaryList = data.filter((it) => it.id !== targetId);
+    setData(newDiaryList);
   };
 
   return (
     <div className="App">
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList diaryList={data} />
+      <DiaryList diaryList={data} onDelete={onDelete} />
     </div>
   );
 }
