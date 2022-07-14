@@ -39,10 +39,51 @@ export const DiaryStateContext = React.createContext();
 // data state를 변화시킬수 있는 dispatch 함수들을 공급한다.
 export const DiaryDispatchContext = React.createContext();
 
-function App() {
-  const [data, dispatch] = useReducer(reducer, []);
+const dummyData = [
+  {
+    id: 1,
+    emotion: 1,
+    content: '오늘의 일기 1번',
+    date: 1657631651603,
+  },
+  {
+    id: 2,
+    emotion: 2,
+    content: '오늘의 일기 2번',
+    date: 1657631651604,
+  },
+  {
+    id: 3,
+    emotion: 3,
+    content: '오늘의 일기 3번',
+    date: 1657631651604,
+  },
+  {
+    id: 4,
+    emotion: 4,
+    content: '오늘의 일기 4번',
+    date: 1657631651605,
+  },
+  {
+    id: 5,
+    emotion: 5,
+    content: '오늘의 일기 5번',
+    date: 1657631651606,
+  },
+  {
+    id: 6,
+    emotion: 5,
+    content: '오늘의 일기 6번',
+    date: 1757631651606,
+  },
+];
 
-  // id로 사용예정
+function App() {
+  const [data, dispatch] = useReducer(reducer, dummyData);
+
+  console.log(new Date().getTime());
+
+  // id로 사용예정`
   const dataId = useRef(0);
   // CREATE
   const onCreate = (date, content, emotion) => {
