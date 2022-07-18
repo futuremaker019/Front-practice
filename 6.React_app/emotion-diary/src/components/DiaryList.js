@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DiaryItem from './DiaryItem';
 import MyButton from './MyButton';
@@ -17,7 +17,7 @@ const filterOptionList = [
 // value : select가 어떤것을 선택하고 있는지의 역할
 // onChange : select가 변화됬을때 바꿀 기능 (?)
 // optionList : select tag 안의 option tag
-const ControlMenu = ({ value, onChange, optionList }) => {
+const ControlMenu = React.memo(({ value, onChange, optionList }) => {
   return (
     <select
       className="ControlMenu"
@@ -31,7 +31,7 @@ const ControlMenu = ({ value, onChange, optionList }) => {
       ))}
     </select>
   );
-};
+});
 
 const DiaryList = ({ diaryList }) => {
   const navigate = useNavigate();
