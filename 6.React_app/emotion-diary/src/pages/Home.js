@@ -20,10 +20,14 @@ const Home = () => {
         1
       ).getTime();
 
+      // 자바스크립트에서 Date 객체 사용시 시, 분, 초까지 고려하자
       const lastDay = new Date(
         curDate.getFullYear(),
         curDate.getMonth() + 1,
-        0
+        0,
+        23,
+        59,
+        59
       ).getTime();
 
       setData(

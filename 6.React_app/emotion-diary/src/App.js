@@ -31,7 +31,7 @@ const reducer = (state, action) => {
     default:
       return state;
   }
-  return state;
+  return newState;
 };
 
 // data state를 공급한다.
