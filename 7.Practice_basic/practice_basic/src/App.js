@@ -1,6 +1,7 @@
 import './App.css';
 import DiaryList from './DairyList';
 import DiaryEditor from './DiaryEditor';
+import { useState, useRef } from 'react';
 
 const dummyData = [
   {
@@ -27,9 +28,26 @@ const dummyData = [
 ];
 
 function App() {
+  const [data, setData] = useState([]);
+
+  const dataId = useRef(0);
+
+  const onCreate = (author, content, emotion) => {
+    const createdDate = new Date().getTime();
+    const newItem = {
+      author,
+      content,
+      emotion,
+      createdDate,
+      id: dataId.current,
+    };
+    dataId.current += 1;
+    setData([...data, newItem]);
+  };
+
   return (
     <div className="App">
-      <DiaryEditor />
+      <DiaryEditor onCreate={onCreate} />
       <DiaryList diaryList={dummyData} />
     </div>
   );
