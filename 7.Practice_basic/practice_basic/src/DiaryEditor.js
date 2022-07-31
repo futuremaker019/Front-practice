@@ -1,16 +1,38 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
-const DiaryEditor = () => {
+const DiaryEditor = ({ onCreate }) => {
   const [state, setState] = useState({
     author: '',
     content: '',
     emotion: 1,
   });
 
+  const authorInput = useRef();
+  const contentInput = useRef();
+
+  // 해당하는 Input의 value를 변경해준다.
   const handleChangeState = (e) => {
     setState({
       ...state,
-      [e.target.name]: e.target.valu,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = () => {
+    if (state.author.length < 1) {
+      authorInput.current.focus();
+    }
+
+    if (state.content.length < 1) {
+      contentInput.current.focus();
+    }
+
+    onCreate(state.author, state.content, state.emotion);
+
+    setState({
+      author: '',
+      content: '',
+      emotion: 1,
     });
   };
 
@@ -43,6 +65,9 @@ const DiaryEditor = () => {
           <option value={4}>4</option>
           <option value={5}>5</option>
         </select>
+      </div>
+      <div>
+        <button onClick={handleSubmit}>일기 저장하기</button>
       </div>
     </div>
   );
